@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courseta — Learn Modern Skills Online</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-800">
+
+  <!-- ==================== HEADER / STICKY NAVIGATION BAR ==================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-2.5 group focus:outline-none">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+          </div>
+          <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900">
+            Course<span class="text-indigo-600">ta</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-7" aria-label="Main Navigation">
+          <a href="#home" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Home</a>
+          <a href="#courses" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Courses</a>
+          <a href="#register" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Register</a>
+          <a href="#comments" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">Reviews</a>
+        </nav>
+
+        <!-- Desktop Actions (Discreet Admin + Register Now CTA) -->
+        <div class="hidden md:flex items-center gap-3">
+          <button
+            type="button"
+            class="open-admin-btn inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-xl border border-slate-200/80 transition-colors cursor-pointer"
+            title="Open Owner Admin Dashboard"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            Admin
+          </button>
+          <a href="#register" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-sm shadow-indigo-600/20 transition-all hover:-translate-y-0.5">
+            Register Now
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button
+          id="mobileMenuBtn"
+          type="button"
+          class="md:hidden inline-flex items-center justify-center p-2.5 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+        >
+          <svg id="menuIconOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menuIconClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-5 space-y-2 shadow-lg">
+      <a href="#home" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Home</a>
+      <a href="#courses" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Courses</a>
+      <a href="#register" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Register</a>
+      <a href="#comments" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-indigo-50 hover:text-indigo-600">Reviews</a>
+      <button
+        type="button"
+        class="open-admin-btn mobile-nav-link w-full text-left flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        Admin Dashboard
+      </button>
+      <div class="pt-2">
+        <a href="#register" class="mobile-nav-link block w-full text-center px-4 py-3 rounded-xl text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm">
+          Register Now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="home" class="relative overflow-hidden bg-gradient-to-b from-indigo-50/80 via-white to-slate-50 pt-14 pb-20 sm:pt-20 sm:pb-28">
+      <!-- Decorative Background Blobs -->
+      <div class="pointer-events-none absolute -top-24 -right-24 w-96 h-96 rounded-full bg-indigo-200/40 blur-3xl"></div>
+      <div class="pointer-events-none absolute top-40 -left-24 w-80 h-80 rounded-full bg-violet-200/40 blur-3xl"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-100/80 text-indigo-700 text-xs sm:text-sm font-semibold mb-6 border border-indigo-200/70">
+            <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+            Use Referral Code <strong class="font-extrabold">COURSETA10</strong> for 10% Instant Discount
+          </span>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            Upgrade Your Career with <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Courseta</span>
+          </h1>
+
+          <p class="mt-6 text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            Master job-ready skills in Full Stack Development, Python &amp; AI, UI/UX Design, and Cloud DevOps with industry mentors—starting at just <span class="font-bold text-slate-900">₹1,499</span>.
+          </p>
+
+          <!-- Hero Action Buttons -->
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#courses" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow-lg shadow-indigo-600/25 transition-all hover:-translate-y-0.5">
+              Explore Courses
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+            <a href="#register" class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-xl shadow-sm transition-all hover:-translate-y-0.5">
+              Register Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Stats Strip -->
+        <div class="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
+          <div class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-2xl p-5 text-center shadow-sm">
+            <p class="text-2xl sm:text-3xl font-extrabold text-indigo-600">30,000+</p>
+            <p class="mt-1 text-xs sm:text-sm font-medium text-slate-500">Enrolled Students</p>
+          </div>
+          <div class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-2xl p-5 text-center shadow-sm">
+            <p class="text-2xl sm:text-3xl font-extrabold text-indigo-600">₹1,499+</p>
+            <p class="mt-1 text-xs sm:text-sm font-medium text-slate-500">Affordable Fees</p>
+          </div>
+          <div class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-2xl p-5 text-center shadow-sm">
+            <p class="text-2xl sm:text-3xl font-extrabold text-indigo-600">4.9 / 5</p>
+            <p class="mt-1 text-xs sm:text-sm font-medium text-slate-500">Learner Rating</p>
+          </div>
+          <div class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-2xl p-5 text-center shadow-sm">
+            <p class="text-2xl sm:text-3xl font-extrabold text-indigo-600">100%</p>
+            <p class="mt-1 text-xs sm:text-sm font-medium text-slate-500">Hands-On Projects</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== COURSES CATALOG SECTION ==================== -->
+    <section id="courses" class="py-16 sm:py-24 bg-white border-t border-slate-200/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Heading & Category Filter Tabs -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+          <div>
+            <span class="text-sm font-semibold uppercase tracking-wider text-indigo-600">Course Catalog</span>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Popular Courses</h2>
+            <p class="mt-2 text-slate-600 max-w-xl">
+              Every program includes live mentorship, real-world projects, and a verified certificate. Click <strong class="font-semibold text-slate-800">Enroll Now</strong> to pre-select a course.
+            </p>
+          </div>
+
+          <!-- Category Filter Tabs -->
+          <div class="flex flex-wrap gap-2" id="courseFilters" role="tablist" aria-label="Course Categories">
+            <button type="button" data-filter="All" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-sm transition-all cursor-pointer">All</button>
+            <button type="button" data-filter="Development" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">Development</button>
+            <button type="button" data-filter="Data & AI" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">Data &amp; AI</button>
+            <button type="button" data-filter="Design" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">Design</button>
+            <button type="button" data-filter="Business" class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer">Business</button>
+          </div>
+        </div>
+
+        <!-- Courses Grid -->
+        <div id="coursesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+      </div>
+    </section>
+
+    <!-- ==================== COURSE REGISTRATION SYSTEM ==================== -->
+    <section id="register" class="py-16 sm:py-24 bg-slate-50 border-t border-slate-200/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-sm font-semibold uppercase tracking-wider text-indigo-600">Enrollment Portal</span>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Register for a Course</h2>
+          <p class="mt-3 text-slate-600">
+            Fill in your details below to reserve your seat. Your enrollment is synced securely in real time.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Registration Form Card -->
+          <div class="lg:col-span-7 bg-white rounded-3xl shadow-sm border border-slate-200/90 p-6 sm:p-8 lg:p-10">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900">Student Registration Form</h3>
+                <p class="text-sm text-slate-500 mt-0.5">All fees are in Indian Rupees (₹)</p>
+              </div>
+              <span id="dbStatusBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                <span id="dbStatusDot" class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                <span id="dbStatusText">Connecting...</span>
+              </span>
+            </div>
+
+            <!-- Inline Error Summary Banner -->
+            <div id="regErrorBanner" class="hidden mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-sm flex items-start gap-3" role="alert">
+              <svg class="w-5 h-5 shrink-0 mt-0.5 text-rose-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span id="regErrorText">Please correct the highlighted fields below.</span>
+            </div>
+
+            <form id="registrationForm" novalidate class="space-y-5">
+              <!-- Field 1: Course Name -->
+              <div>
+                <label for="courseName" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Course Name <span class="text-rose-500">*</span>
+                </label>
+                <div class="relative">
+                  <select
+                    id="courseName"
+                    name="courseName"
+                    required
+                    class="w-full appearance-none rounded-xl border border-slate-300 bg-white px-4 py-3 pr-10 text-slate-800 text-sm sm:text-base focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all"
+                  >
+                    <option value="">-- Select a Course --</option>
+                    <!-- Populated via JS -->
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+                <p id="err-courseName" class="hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+              </div>
+
+              <!-- Field 2: User Name -->
+              <div>
+                <label for="userName" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  User Name <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="userName"
+                  name="userName"
+                  required
+                  placeholder="Enter your full name (e.g., Aarav Sharma)"
+                  autocomplete="name"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 text-sm sm:text-base placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all"
+                />
+                <p id="err-userName" class="hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+              </div>
+
+              <!-- Row: Mobile Number & Age -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <!-- Field 3: Mobile Number (Mob No) -->
+                <div>
+                  <label for="mobNo" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                    Mobile Number (Mob No) <span class="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="mobNo"
+                    name="mobNo"
+                    required
+                    maxlength="10"
+                    inputmode="numeric"
+                    placeholder="10-digit mobile number"
+                    autocomplete="tel"
+                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 text-sm sm:text-base placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all"
+                  />
+                  <p id="err-mobNo" class="hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                </div>
+
+                <!-- Field 5: Age -->
+                <div>
+                  <label for="age" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                    Age <span class="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    required
+                    min="12"
+                    max="99"
+                    placeholder="Enter age (12 - 99)"
+                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 text-sm sm:text-base placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all"
+                  />
+                  <p id="err-age" class="hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+                </div>
+              </div>
+
+              <!-- Field 4: Email ID -->
+              <div>
+                <label for="emailId" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Email ID <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="emailId"
+                  name="emailId"
+                  required
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 text-sm sm:text-base placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all"
+                />
+                <p id="err-emailId" class="hidden mt-1.5 text-xs font-medium text-rose-600"></p>
+              </div>
+
+              <!-- Field 6: Referral Code (Optional) -->
+              <div class="pt-1">
+                <label for="referralCode" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Referral Code <span class="text-xs font-normal text-slate-400">(Optional)</span>
+                </label>
+                <div class="flex flex-col sm:flex-row gap-2.5">
+                  <input
+                    type="text"
+                    id="referralCode"
+                    name="referralCode"
+                    maxlength="20"
+                    placeholder="Enter referral code (e.g., COURSETA10)"
+                    class="flex-1 uppercase rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800 text-sm sm:text-base placeholder:normal-case placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all"
+                  />
+                  <button
+                    type="button"
+                    id="applyReferralBtn"
+                    class="px-5 py-3 rounded-xl text-sm font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 transition-colors cursor-pointer shrink-0"
+                  >
+                    Apply
+                  </button>
+                  <button
+                    type="button"
+                    id="removeReferralBtn"
+                    class="hidden px-4 py-3 rounded-xl text-sm font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-colors cursor-pointer shrink-0"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <p class="mt-1.5 text-xs text-slate-500">
+                  Tip: Click <button type="button" id="quickFillCode" class="font-bold text-indigo-600 hover:underline cursor-pointer">COURSETA10</button> for <strong>10% off</strong>, or enter any 4+ character friend code for <strong>₹200 off</strong>.
+                </p>
+                <p id="referralFeedback" class="hidden mt-1.5 text-xs font-semibold"></p>
+              </div>
+
+              <!-- Live Price Summary Card -->
+              <div class="rounded-2xl bg-slate-50 border border-slate-200/90 p-4 sm:p-5 space-y-2.5">
+                <div class="flex items-center justify-between text-sm">
+                  <span class="text-slate-600 font-medium">Course Price</span>
+                  <span id="summaryBasePrice" class="font-semibold text-slate-900">₹0</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                  <span class="text-slate-600 font-medium flex items-center gap-2">
+                    Referral Discount
+                    <span id="summaryCodeBadge" class="hidden px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-700"></span>
+                  </span>
+                  <span id="summaryDiscount" class="font-semibold text-emerald-600">- ₹0</span>
+                </div>
+                <div class="pt-2.5 border-t border-slate-200 flex items-center justify-between">
+                  <span class="text-sm sm:text-base font-bold text-slate-900">Final Payable Amount</span>
+                  <span id="summaryFinalPrice" class="text-xl sm:text-2xl font-extrabold text-indigo-600">₹0</span>
+                </div>
+              </div>
+
+              <!-- Prominent Clickable Register Now Button with Loading State -->
+              <div class="pt-1">
+                <button
+                  type="submit"
+                  id="registerNowBtn"
+                  class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 text-base font-bold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 disabled:opacity-70 disabled:cursor-not-allowed rounded-xl shadow-lg shadow-indigo-600/25 focus:outline-none focus:ring-4 focus:ring-indigo-500/30 transition-all active:scale-[0.99] cursor-pointer"
+                >
+                  <svg id="regSpinner" class="hidden w-5 h-5 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                  <span id="regBtnText">Register Now</span>
+                  <svg id="regBtnIcon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Live Recent Enrollments Feed -->
+          <div class="lg:col-span-5 bg-white rounded-3xl shadow-sm border border-slate-200/90 p-6 sm:p-8 lg:sticky lg:top-24">
+            <div class="flex items-center justify-between mb-5 pb-4 border-b border-slate-100">
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">Live Enrollments</h3>
+                <p class="text-xs sm:text-sm text-slate-500">Real-time updates via cloud database</p>
+              </div>
+              <span id="regCountBadge" class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
+                0
+              </span>
+            </div>
+
+            <!-- List of Publicly Summarized Registrations -->
+            <div id="recentRegistrationsList" class="space-y-3.5 max-h-[480px] overflow-y-auto pr-1">
+              <!-- Populated via Firestore real-time listener -->
+            </div>
+
+            <!-- Site Owner Quick Access Note -->
+            <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+              <span class="text-xs text-slate-500">Full student details &amp; CSV export:</span>
+              <button
+                type="button"
+                class="open-admin-btn text-xs font-bold text-indigo-600 hover:text-indigo-800 hover:underline cursor-pointer shrink-0"
+              >
+                Open Admin Panel &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== USER COMMENTS / REVIEWS SECTION ==================== -->
+    <section id="comments" class="py-16 sm:py-24 bg-white border-t border-slate-200/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-sm font-semibold uppercase tracking-wider text-indigo-600">Community Voices</span>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Student Reviews &amp; Comments</h2>
+          <p class="mt-3 text-slate-600">
+            Read real-time reviews from Courseta learners across India, or share your own experience below.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Existing Comments Feed -->
+          <div class="lg:col-span-7 space-y-5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-slate-900">
+                All Reviews (<span id="commentCount">0</span>)
+              </h3>
+              <span class="text-xs font-medium text-slate-500">Synced in real time</span>
+            </div>
+
+            <div id="commentsList" class="space-y-4">
+              <!-- Populated via Firestore + featured reviews -->
+            </div>
+          </div>
+
+          <!-- Interactive Add a Comment Form -->
+          <div class="lg:col-span-5 bg-slate-50 rounded-3xl border border-slate-200/90 p-6 sm:p-8 lg:sticky lg:top-24">
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Add a Review</h3>
+            <p class="text-sm text-slate-500 mb-6">Your comment is published live for all visitors.</p>
+
+            <!-- Comment Feedback Banner -->
+            <div id="commentSuccessBanner" class="hidden mb-5 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-medium flex items-center gap-2">
+              <svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Your review has been saved and published!</span>
+            </div>
+
+            <div id="commentErrorBanner" class="hidden mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm font-medium"></div>
+
+            <form id="commentForm" novalidate class="space-y-4">
+              <div>
+                <label for="commentAuthor" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Your Name <span class="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="commentAuthor"
+                  required
+                  placeholder="e.g., Priya Nair"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all"
+                />
+                <p id="err-commentAuthor" class="hidden mt-1 text-xs font-medium text-rose-600"></p>
+              </div>
+
+              <div>
+                <label for="commentCourse" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Course Taken
+                </label>
+                <select
+                  id="commentCourse"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-800 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all"
+                >
+                  <option value="General Learner">General Experience</option>
+                  <!-- Populated via JS -->
+                </select>
+              </div>
+
+              <!-- Interactive 1-5 Star Rating Selector -->
+              <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Your Rating <span class="text-rose-500">*</span>
+                </label>
+                <div class="flex items-center gap-3">
+                  <div id="starRatingPicker" class="inline-flex items-center gap-1 bg-white px-3 py-2 rounded-xl border border-slate-300" role="radiogroup" aria-label="Star rating">
+                    <button type="button" data-star="1" class="star-btn text-2xl leading-none text-amber-400 hover:scale-110 transition-transform cursor-pointer" aria-label="1 star">★</button>
+                    <button type="button" data-star="2" class="star-btn text-2xl leading-none text-amber-400 hover:scale-110 transition-transform cursor-pointer" aria-label="2 stars">★</button>
+                    <button type="button" data-star="3" class="star-btn text-2xl leading-none text-amber-400 hover:scale-110 transition-transform cursor-pointer" aria-label="3 stars">★</button>
+                    <button type="button" data-star="4" class="star-btn text-2xl leading-none text-amber-400 hover:scale-110 transition-transform cursor-pointer" aria-label="4 stars">★</button>
+                    <button type="button" data-star="5" class="star-btn text-2xl leading-none text-amber-400 hover:scale-110 transition-transform cursor-pointer" aria-label="5 stars">★</button>
+                  </div>
+                  <span id="starRatingLabel" class="text-xs font-semibold text-slate-600">5 / 5 (Excellent)</span>
+                </div>
+                <input type="hidden" id="commentRating" value="5" />
+              </div>
+
+              <div>
+                <label for="commentText" class="block text-sm font-semibold text-slate-700 mb-1.5">
+                  Your Review <span class="text-rose-500">*</span>
+                </label>
+                <textarea
+                  id="commentText"
+                  rows="4"
+                  required
+                  placeholder="Share what you liked about the instructors, projects, or support..."
+                  class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none transition-all resize-none"
+                ></textarea>
+                <p id="err-commentText" class="hidden mt-1 text-xs font-medium text-rose-600"></p>
+              </div>
+
+              <button
+                type="submit"
+                id="postCommentBtn"
+                class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-bold text-white bg-slate-900 hover:bg-indigo-600 disabled:opacity-70 disabled:cursor-not-allowed rounded-xl shadow-sm transition-colors cursor-pointer"
+              >
+                <svg id="commentSpinner" class="hidden w-4 h-4 animate-spin text-white" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                <span id="postCommentText">Post Review</span>
+                <svg id="postCommentIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-slate-900 text-slate-300 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+          </div>
+          <span class="text-xl font-extrabold text-white tracking-tight">Courseta</span>
+        </div>
+
+        <nav class="flex flex-wrap items-center justify-center gap-6 text-sm">
+          <a href="#home" class="hover:text-white transition-colors">Home</a>
+          <a href="#courses" class="hover:text-white transition-colors">Courses</a>
+          <a href="#register" class="hover:text-white transition-colors">Register</a>
+          <a href="#comments" class="hover:text-white transition-colors">Reviews</a>
+          <button type="button" class="open-admin-btn text-slate-400 hover:text-white transition-colors cursor-pointer">Admin</button>
+        </nav>
+
+        <p class="text-xs sm:text-sm text-slate-400">
+          &copy; 2026 Courseta Learning Pvt. Ltd. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== REGISTRATION SUCCESS MODAL ==================== -->
+  <div
+    id="successModal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100">
+      <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-5">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h3 id="modalTitle" class="text-2xl font-extrabold text-slate-900 text-center">Registration Confirmed!</h3>
+      <p class="text-sm text-slate-500 text-center mt-1.5">
+        Your enrollment has been saved. Here is your registration summary:
+      </p>
+
+      <div id="modalDetails" class="mt-6 bg-slate-50 rounded-2xl p-4 border border-slate-200/80 space-y-2.5 text-sm">
+        <!-- Populated dynamically -->
+      </div>
+
+      <button
+        type="button"
+        id="closeModalBtn"
+        class="mt-6 w-full py-3.5 px-5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-sm transition-colors cursor-pointer"
+      >
+        Done
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== ADMIN REGISTRATIONS DASHBOARD MODAL ==================== -->
+  <div
+    id="adminModal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/70 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="adminModalTitle"
+  >
+    <div class="bg-white rounded-3xl w-full max-w-6xl max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+      <!-- Admin Modal Header -->
+      <div class="px-6 py-4 sm:px-8 sm:py-5 bg-slate-900 text-white flex items-center justify-between gap-4 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-indigo-300">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <div>
+            <h3 id="adminModalTitle" class="text-lg sm:text-xl font-bold leading-tight">Courseta Admin Dashboard</h3>
+            <p class="text-xs text-slate-400">Real-time student registrations &amp; CSV export</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="lockAdminBtn"
+            class="hidden px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors cursor-pointer"
+          >
+            Lock
+          </button>
+          <button
+            type="button"
+            id="closeAdminModalBtn"
+            class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            aria-label="Close Admin Dashboard"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- View 1: Passcode Gate -->
+      <div id="adminLoginView" class="p-6 sm:p-10 overflow-y-auto flex-1 flex items-center justify-center">
+        <form id="adminPasscodeForm" class="w-full max-w-sm bg-slate-50 rounded-2xl border border-slate-200 p-6 sm:p-7">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 text-center">Owner Access Required</h4>
+          <p class="text-xs text-slate-500 text-center mt-1 mb-5">
+            Enter the admin passcode to view registered student details.
+          </p>
+
+          <label for="adminPasscodeInput" class="block text-xs font-semibold text-slate-700 mb-1.5">Admin Passcode</label>
+          <input
+            type="password"
+            id="adminPasscodeInput"
+            required
+            placeholder="Enter passcode"
+            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none"
+          />
+          <p id="adminPasscodeError" class="hidden mt-2 text-xs font-semibold text-rose-600">
+            Incorrect passcode. Please try again.
+          </p>
+
+          <button
+            type="submit"
+            class="mt-4 w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold shadow-sm transition-colors cursor-pointer"
+          >
+            Unlock Dashboard
+          </button>
+          <p class="mt-3 text-[11px] text-center text-slate-400">
+            Default passcode: <code class="px-1.5 py-0.5 rounded bg-slate-200/70 text-slate-600 font-semibold">courseta2026</code> (change in code before deploying)
+          </p>
+        </form>
+      </div>
+
+      <!-- View 2: Unlocked Dashboard -->
+      <div id="adminDashboardView" class="hidden flex-1 flex flex-col overflow-hidden">
+        <!-- Summary Stats & Controls -->
+        <div class="p-4 sm:p-6 bg-slate-50 border-b border-slate-200 space-y-4 shrink-0">
+          <!-- Stats Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <div class="bg-white rounded-2xl border border-slate-200 p-4">
+              <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Registrations</p>
+              <p id="adminTotalRegs" class="mt-1 text-2xl font-extrabold text-slate-900">0</p>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-4">
+              <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Revenue</p>
+              <p id="adminTotalRevenue" class="mt-1 text-2xl font-extrabold text-emerald-600">₹0</p>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 p-4">
+              <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Referrals Used</p>
+              <p id="adminTotalReferrals" class="mt-1 text-2xl font-extrabold text-indigo-600">0</p>
+            </div>
+          </div>
+
+          <!-- Search & Export Row -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <div class="relative flex-1">
+              <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                type="text"
+                id="adminSearchInput"
+                placeholder="Search by name, course, mobile, email, or referral code..."
+                class="w-full rounded-xl border border-slate-300 bg-white pl-10 pr-4 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 focus:outline-none"
+              />
+            </div>
+
+            <button
+              type="button"
+              id="downloadCsvBtn"
+              class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-sm transition-colors cursor-pointer shrink-0"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Download CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Real-Time Registrations Table -->
+        <div class="flex-1 overflow-auto p-4 sm:p-6">
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-left text-sm">
+              <thead class="bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-500">
+                <tr>
+                  <th class="px-4 py-3.5 whitespace-nowrap">Date</th>
+                  <th class="px-4 py-3.5 whitespace-nowrap">Name</th>
+                  <th class="px-4 py-3.5 whitespace-nowrap">Course</th>
+                  <th class="px-4 py-3.5 whitespace-nowrap">Mobile</th>
+                  <th class="px-4 py-3.5 whitespace-nowrap">Email</th>
+                  <th class="px-4 py-3.5 whitespace-nowrap">Age</th>
+                  <th class="px-4 py-3.5 whitespace-nowrap">Referral Code</th>
+                  <th class="px-4 py-3.5 whitespace-nowrap text-right">Final Price</th>
+                  <th class="px-4 py-3.5 whitespace-nowrap text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody" class="divide-y divide-slate-100 bg-white">
+                <!-- Populated dynamically via Firestore -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FIREBASE & APPLICATION JAVASCRIPT ==================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // =========================================================================
+    // 1. OWNER & FIREBASE CONFIGURATION
+    // =========================================================================
+    // Change this passcode before deploying publicly!
+    const ADMIN_PASSCODE = 'courseta2026';
+
+    // When running in the preview environment, __firebase_config & __app_id are injected automatically.
+    // When deploying externally (Firebase Hosting, Netlify, Vercel), replace the fallback values below
+    // with your own Firebase Project settings from Firebase Console > Project Settings > Your Apps.
+    const EXTERNAL_FIREBASE_CONFIG = {
+    apiKey: "AIzaSyA2pbB8fT41MMpKBdSsGXCO-hYpbBW9SrI",
+    authDomain: "courseta.firebaseapp.com",
+    projectId: "courseta",
+    storageBucket: "courseta.firebasestorage.app",
+    messagingSenderId: "410331960396",
+    appId: "1:410331960396:web:b4bb68b5d5963f529750e9",
+    measurementId: "G-7VGXYCBZKD"
+    };
+
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'courseta-production';
+    const firebaseConfig = typeof __firebase_config !== 'undefined'
+      ? JSON.parse(__firebase_config)
+      : EXTERNAL_FIREBASE_CONFIG;
+
+    // Initialize Firebase App, Auth, and Firestore
+    let app = null;
+    let auth = null;
+    let db = null;
+    let currentUser = null;
+    let isFirebaseReady = false;
+
+    // =========================================================================
+    // 2. STATIC CATALOG & FEATURED REVIEWS DATA
+    // =========================================================================
+    const COURSES = [
+      {
+        id: 'full-stack-dev',
+        name: 'Full Stack Development',
+        category: 'Development',
+        duration: '16 Weeks',
+        level: 'Beginner to Pro',
+        price: 2499,
+        color: 'from-indigo-500 to-blue-600',
+        badgeBg: 'bg-indigo-50 text-indigo-700',
+        description: 'Build production-ready web apps from scratch with HTML, Tailwind CSS, JavaScript, React, Node.js, and MongoDB.',
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />`
+      },
+      {
+        id: 'python-data-science-ai',
+        name: 'Python for Data Science & AI',
+        category: 'Data & AI',
+        duration: '14 Weeks',
+        level: 'Intermediate',
+        price: 2999,
+        color: 'from-emerald-500 to-teal-600',
+        badgeBg: 'bg-emerald-50 text-emerald-700',
+        description: 'Master Python, Pandas, NumPy, machine learning models, and generative AI workflows on real industry datasets.',
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />`
+      },
+      {
+        id: 'ui-ux-product-design',
+        name: 'UI/UX & Product Design',
+        category: 'Design',
+        duration: '10 Weeks',
+        level: 'Beginner Friendly',
+        price: 1999,
+        color: 'from-fuchsia-500 to-pink-600',
+        badgeBg: 'bg-pink-50 text-pink-700',
+        description: 'Learn user research, wireframing, Figma prototyping, and scalable design systems to craft portfolio-grade products.',
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />`
+      },
+      {
+        id: 'cloud-devops-eng',
+        name: 'Cloud & DevOps Engineering',
+        category: 'Development',
+        duration: '12 Weeks',
+        level: 'Intermediate',
+        price: 3499,
+        color: 'from-sky-500 to-cyan-600',
+        badgeBg: 'bg-sky-50 text-sky-700',
+        description: 'Architect scalable cloud systems on AWS, automate CI/CD pipelines, and orchestrate containers with Docker & Kubernetes.',
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />`
+      },
+      {
+        id: 'digital-marketing-growth',
+        name: 'Digital Marketing & Growth',
+        category: 'Business',
+        duration: '8 Weeks',
+        level: 'All Levels',
+        price: 1499,
+        color: 'from-amber-500 to-orange-600',
+        badgeBg: 'bg-amber-50 text-amber-700',
+        description: 'Master SEO, Google & Meta Ads, funnel optimization, and growth analytics to scale startups and modern brands.',
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />`
+      },
+      {
+        id: 'mobile-app-flutter',
+        name: 'Mobile App Development (Flutter)',
+        category: 'Development',
+        duration: '14 Weeks',
+        level: 'Beginner to Pro',
+        price: 2799,
+        color: 'from-violet-500 to-purple-600',
+        badgeBg: 'bg-violet-50 text-violet-700',
+        description: 'Build high-performance Android & iOS apps from a single Dart/Flutter codebase with Firebase, REST APIs, and store publishing.',
+        icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />`
+      }
+    ];
+
+    // Featured starter reviews displayed alongside live Firestore reviews
+    const FEATURED_REVIEWS = [
+      {
+        id: 'seed-1',
+        author: 'Ananya Verma',
+        course: 'Full Stack Development',
+        rating: 5,
+        dateStr: 'Nov 20, 2026',
+        createdAtMs: 1795132800000,
+        text: 'Getting Full Stack Development at ₹2,499 is unbelievable value! The live code reviews and capstone projects helped me land my first developer role.'
+      },
+      {
+        id: 'seed-2',
+        author: 'Rohan Kulkarni',
+        course: 'Python for Data Science & AI',
+        rating: 5,
+        dateStr: 'Nov 14, 2026',
+        createdAtMs: 1794614400000,
+        text: 'The mentors explain Python and ML models clearly with real datasets. Applied COURSETA10 and saved 10% immediately.'
+      },
+      {
+        id: 'seed-3',
+        author: 'Meera Nair',
+        course: 'UI/UX & Product Design',
+        rating: 5,
+        dateStr: 'Nov 06, 2026',
+        createdAtMs: 1793923200000,
+        text: 'Loved the Figma workshops and weekly portfolio feedback. I went from beginner to presenting two complete product case studies.'
+      }
+    ];
+
+    // =========================================================================
+    // 3. STATE & DOM REFERENCES
+    // =========================================================================
+    let activeCategory = 'All';
+    let appliedReferralCode = '';
+    let selectedStarRating = 5;
+    let isAdminUnlocked = false;
+    let liveRegistrations = [];
+    let liveComments = [];
+
+    // Navigation
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIconOpen = document.getElementById('menuIconOpen');
+    const menuIconClose = document.getElementById('menuIconClose');
+
+    // Courses
+    const coursesGrid = document.getElementById('coursesGrid');
+    const courseFilters = document.getElementById('courseFilters');
+
+    // Registration Form
+    const dbStatusBadge = document.getElementById('dbStatusBadge');
+    const dbStatusDot = document.getElementById('dbStatusDot');
+    const dbStatusText = document.getElementById('dbStatusText');
+    const registrationForm = document.getElementById('registrationForm');
+    const courseSelect = document.getElementById('courseName');
+    const userNameInput = document.getElementById('userName');
+    const mobNoInput = document.getElementById('mobNo');
+    const emailIdInput = document.getElementById('emailId');
+    const ageInput = document.getElementById('age');
+    const referralCodeInput = document.getElementById('referralCode');
+    const applyReferralBtn = document.getElementById('applyReferralBtn');
+    const removeReferralBtn = document.getElementById('removeReferralBtn');
+    const quickFillCodeBtn = document.getElementById('quickFillCode');
+    const referralFeedback = document.getElementById('referralFeedback');
+
+    const summaryBasePrice = document.getElementById('summaryBasePrice');
+    const summaryDiscount = document.getElementById('summaryDiscount');
+    const summaryCodeBadge = document.getElementById('summaryCodeBadge');
+    const summaryFinalPrice = document.getElementById('summaryFinalPrice');
+
+    const regErrorBanner = document.getElementById('regErrorBanner');
+    const regErrorText = document.getElementById('regErrorText');
+    const registerNowBtn = document.getElementById('registerNowBtn');
+    const regSpinner = document.getElementById('regSpinner');
+    const regBtnText = document.getElementById('regBtnText');
+    const regBtnIcon = document.getElementById('regBtnIcon');
+
+    const recentRegistrationsList = document.getElementById('recentRegistrationsList');
+    const regCountBadge = document.getElementById('regCountBadge');
+
+    // Success Modal
+    const successModal = document.getElementById('successModal');
+    const modalDetails = document.getElementById('modalDetails');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    // Comments Section
+    const commentsList = document.getElementById('commentsList');
+    const commentCount = document.getElementById('commentCount');
+    const commentForm = document.getElementById('commentForm');
+    const commentAuthorInput = document.getElementById('commentAuthor');
+    const commentCourseSelect = document.getElementById('commentCourse');
+    const commentRatingInput = document.getElementById('commentRating');
+    const starRatingPicker = document.getElementById('starRatingPicker');
+    const starRatingLabel = document.getElementById('starRatingLabel');
+    const commentTextInput = document.getElementById('commentText');
+    const commentSuccessBanner = document.getElementById('commentSuccessBanner');
+    const commentErrorBanner = document.getElementById('commentErrorBanner');
+    const postCommentBtn = document.getElementById('postCommentBtn');
+    const commentSpinner = document.getElementById('commentSpinner');
+    const postCommentText = document.getElementById('postCommentText');
+    const postCommentIcon = document.getElementById('postCommentIcon');
+
+    // Admin Dashboard Modal
+    const adminModal = document.getElementById('adminModal');
+    const closeAdminModalBtn = document.getElementById('closeAdminModalBtn');
+    const lockAdminBtn = document.getElementById('lockAdminBtn');
+    const adminLoginView = document.getElementById('adminLoginView');
+    const adminDashboardView = document.getElementById('adminDashboardView');
+    const adminPasscodeForm = document.getElementById('adminPasscodeForm');
+    const adminPasscodeInput = document.getElementById('adminPasscodeInput');
+    const adminPasscodeError = document.getElementById('adminPasscodeError');
+    const adminTotalRegs = document.getElementById('adminTotalRegs');
+    const adminTotalRevenue = document.getElementById('adminTotalRevenue');
+    const adminTotalReferrals = document.getElementById('adminTotalReferrals');
+    const adminSearchInput = document.getElementById('adminSearchInput');
+    const downloadCsvBtn = document.getElementById('downloadCsvBtn');
+    const adminTableBody = document.getElementById('adminTableBody');
+
+    // =========================================================================
+    // 4. UTILITY HELPERS
+    // =========================================================================
+    function formatINR(amount) {
+      return '₹' + Number(amount || 0).toLocaleString('en-IN');
+    }
+
+    function escapeHTML(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function getInitials(name) {
+      const parts = String(name || 'U').trim().split(/\s+/);
+      if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+
+    function getAvatarColor(name) {
+      const palette = [
+        'bg-indigo-100 text-indigo-700',
+        'bg-emerald-100 text-emerald-700',
+        'bg-violet-100 text-violet-700',
+        'bg-amber-100 text-amber-700',
+        'bg-sky-100 text-sky-700',
+        'bg-rose-100 text-rose-700'
+      ];
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      return palette[Math.abs(hash) % palette.length];
+    }
+
+    function renderStars(rating) {
+      const safeRating = Math.min(5, Math.max(1, Number(rating) || 5));
+      let html = '';
+      for (let i = 1; i <= 5; i++) {
+        html += `<span class="${i <= safeRating ? 'text-amber-400' : 'text-slate-300'}">★</span>`;
+      }
+      return html;
+    }
+
+    function setDbStatus(state, label) {
+      dbStatusText.textContent = label;
+      dbStatusBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border';
+      if (state === 'ready') {
+        dbStatusBadge.classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-200');
+        dbStatusDot.className = 'w-2 h-2 rounded-full bg-emerald-500';
+      } else if (state === 'error') {
+        dbStatusBadge.classList.add('bg-rose-50', 'text-rose-700', 'border-rose-200');
+        dbStatusDot.className = 'w-2 h-2 rounded-full bg-rose-500';
+      } else {
+        dbStatusBadge.classList.add('bg-amber-50', 'text-amber-700', 'border-amber-200');
+        dbStatusDot.className = 'w-2 h-2 rounded-full bg-amber-500 animate-pulse';
+      }
+    }
+
+    // =========================================================================
+    // 5. FIREBASE AUTHENTICATION & REAL-TIME LISTENERS
+    // =========================================================================
+    function getRegistrationsColRef() {
+      return collection(db, 'artifacts', appId, 'public', 'data', 'registrations');
+    }
+
+    function getCommentsColRef() {
+      return collection(db, 'artifacts', appId, 'public', 'data', 'comments');
+    }
+
+    async function initFirebaseBackend() {
+      try {
+        if (!firebaseConfig || !firebaseConfig.projectId || firebaseConfig.projectId === 'YOUR_PROJECT_ID') {
+          setDbStatus('error', 'Configure Firebase');
+          renderPublicRegistrations();
+          renderComments();
+          return;
+        }
+
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        // Authenticate first (custom token priority, fallback to anonymous auth)
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          const cred = await signInWithCustomToken(auth, __initial_auth_token);
+          currentUser = cred.user;
+        } else {
+          const cred = await signInAnonymously(auth);
+          currentUser = cred.user;
+        }
+
+        isFirebaseReady = true;
+        setDbStatus('ready', 'Live Cloud Sync');
+
+        // Start real-time listeners AFTER authentication is complete
+        subscribeToRegistrations();
+        subscribeToComments();
+      } catch (err) {
+        console.error('Firebase initialization failed:', err);
+        setDbStatus('error', 'Connection Error');
+        renderPublicRegistrations();
+        renderComments();
+      }
+    }
+
+    function subscribeToRegistrations() {
+      if (!currentUser || !db) return;
+      onSnapshot(
+        getRegistrationsColRef(),
+        (snapshot) => {
+          const items = [];
+          snapshot.forEach((docSnap) => {
+            items.push({ docId: docSnap.id, ...docSnap.data() });
+          });
+          // Sort newest first in JS memory (avoids Firestore composite index errors)
+          items.sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
+          liveRegistrations = items;
+          renderPublicRegistrations();
+          if (isAdminUnlocked) {
+            renderAdminDashboard();
+          }
+        },
+        (error) => {
+          console.error('Registrations listener error:', error);
+          setDbStatus('error', 'Sync Interrupted');
+        }
+      );
+    }
+
+    function subscribeToComments() {
+      if (!currentUser || !db) return;
+      onSnapshot(
+        getCommentsColRef(),
+        (snapshot) => {
+          const items = [];
+          snapshot.forEach((docSnap) => {
+            items.push({ docId: docSnap.id, ...docSnap.data() });
+          });
+          // Sort newest first in JS memory
+          items.sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
+          liveComments = items;
+          renderComments();
+        },
+        (error) => {
+          console.error('Comments listener error:', error);
+        }
+      );
+    }
+
+    // =========================================================================
+    // 6. MOBILE NAVIGATION
+    // =========================================================================
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      menuIconOpen.classList.toggle('hidden', !isHidden);
+      menuIconClose.classList.toggle('hidden', isHidden);
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isHidden));
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // =========================================================================
+    // 7. COURSES GRID & CATEGORY FILTERING
+    // =========================================================================
+    function populateCourseSelects() {
+      COURSES.forEach((course) => {
+        const regOpt = document.createElement('option');
+        regOpt.value = course.name;
+        regOpt.textContent = `${course.name} — ${formatINR(course.price)}`;
+        courseSelect.appendChild(regOpt);
+
+        const commentOpt = document.createElement('option');
+        commentOpt.value = course.name;
+        commentOpt.textContent = course.name;
+        commentCourseSelect.appendChild(commentOpt);
+      });
+    }
+
+    function renderCourses(filterCategory) {
+      const filtered = filterCategory === 'All'
+        ? COURSES
+        : COURSES.filter((c) => c.category === filterCategory);
+
+      coursesGrid.innerHTML = filtered
+        .map(
+          (course) => `
+        <article class="group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
+          <div class="p-6 bg-gradient-to-br ${course.color} text-white relative overflow-hidden">
+            <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/15"></div>
+            <div class="flex items-center justify-between relative z-10">
+              <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  ${course.icon}
+                </svg>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/20 backdrop-blur-sm text-white">
+                ${escapeHTML(course.duration)}
+              </span>
+            </div>
+            <h3 class="mt-5 text-xl font-bold leading-snug relative z-10">${escapeHTML(course.name)}</h3>
+          </div>
+
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-center justify-between mb-3">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold ${course.badgeBg}">
+                ${escapeHTML(course.level)}
+              </span>
+              <span class="text-2xl font-extrabold text-slate-900">${formatINR(course.price)}</span>
+            </div>
+
+            <p class="text-sm text-slate-600 leading-relaxed flex-1">
+              ${escapeHTML(course.description)}
+            </p>
+
+            <button
+              type="button"
+              data-course="${escapeHTML(course.name)}"
+              class="enroll-btn mt-6 w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-600 hover:text-white transition-all cursor-pointer"
+            >
+              Enroll Now
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+          </div>
+        </article>
+      `
+        )
+        .join('');
+    }
+
+    courseFilters.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      activeCategory = btn.dataset.filter;
+
+      courseFilters.querySelectorAll('.filter-btn').forEach((b) => {
+        const isActive = b === btn;
+        b.className = isActive
+          ? 'filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow-sm transition-all cursor-pointer'
+          : 'filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all cursor-pointer';
+      });
+
+      renderCourses(activeCategory);
+    });
+
+    coursesGrid.addEventListener('click', (e) => {
+      const enrollBtn = e.target.closest('.enroll-btn');
+      if (!enrollBtn) return;
+      const selectedCourse = enrollBtn.dataset.course;
+      courseSelect.value = selectedCourse;
+      clearFieldError('courseName', courseSelect);
+      updatePriceSummary();
+      if (appliedReferralCode) applyReferralCode(appliedReferralCode);
+
+      document.getElementById('register').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => courseSelect.focus({ preventScroll: true }), 450);
+    });
+
+    // =========================================================================
+    // 8. LIVE PRICING & REFERRAL CODE LOGIC
+    // =========================================================================
+    function getSelectedCourseObj() {
+      return COURSES.find((c) => c.name === courseSelect.value) || null;
+    }
+
+    function calculatePricing() {
+      const courseObj = getSelectedCourseObj();
+      const basePrice = courseObj ? courseObj.price : 0;
+      let discount = 0;
+
+      if (basePrice > 0 && appliedReferralCode) {
+        if (appliedReferralCode === 'COURSETA10') {
+          discount = Math.round(basePrice * 0.10);
+        } else {
+          discount = Math.min(200, basePrice);
+        }
+      }
+
+      return {
+        basePrice,
+        discount,
+        finalPrice: Math.max(0, basePrice - discount)
+      };
+    }
+
+    function updatePriceSummary() {
+      const { basePrice, discount, finalPrice } = calculatePricing();
+      summaryBasePrice.textContent = formatINR(basePrice);
+      summaryDiscount.textContent = discount > 0 ? `- ${formatINR(discount)}` : '- ₹0';
+      summaryFinalPrice.textContent = formatINR(finalPrice);
+
+      if (appliedReferralCode && basePrice > 0) {
+        summaryCodeBadge.textContent = appliedReferralCode;
+        summaryCodeBadge.classList.remove('hidden');
+      } else {
+        summaryCodeBadge.textContent = '';
+        summaryCodeBadge.classList.add('hidden');
+      }
+    }
+
+    function applyReferralCode(rawCode) {
+      const code = rawCode.trim().toUpperCase();
+      referralFeedback.classList.remove('hidden', 'text-emerald-600', 'text-rose-600');
+
+      if (!code) {
+        appliedReferralCode = '';
+        referralFeedback.textContent = 'Please enter a referral code before clicking Apply.';
+        referralFeedback.classList.add('text-rose-600');
+        removeReferralBtn.classList.add('hidden');
+        updatePriceSummary();
+        return;
+      }
+
+      if (!/^[A-Z0-9_-]{4,20}$/.test(code)) {
+        appliedReferralCode = '';
+        referralFeedback.textContent = 'Referral code must be at least 4 letters or numbers.';
+        referralFeedback.classList.add('text-rose-600');
+        removeReferralBtn.classList.add('hidden');
+        updatePriceSummary();
+        return;
+      }
+
+      appliedReferralCode = code;
+      referralCodeInput.value = code;
+      removeReferralBtn.classList.remove('hidden');
+
+      const courseObj = getSelectedCourseObj();
+      if (code === 'COURSETA10') {
+        referralFeedback.textContent = courseObj
+          ? `Code COURSETA10 applied! You saved 10% (${formatINR(Math.round(courseObj.price * 0.10))}).`
+          : 'Code COURSETA10 applied! Select a course to see your 10% discount.';
+      } else {
+        referralFeedback.textContent = courseObj
+          ? `Friend referral code "${code}" applied! You saved ₹200.`
+          : `Friend referral code "${code}" applied! Select a course to claim ₹200 off.`;
+      }
+      referralFeedback.classList.add('text-emerald-600');
+      updatePriceSummary();
+    }
+
+    function clearReferralCode() {
+      appliedReferralCode = '';
+      referralCodeInput.value = '';
+      referralFeedback.classList.add('hidden');
+      referralFeedback.textContent = '';
+      removeReferralBtn.classList.add('hidden');
+      updatePriceSummary();
+    }
+
+    applyReferralBtn.addEventListener('click', () => applyReferralCode(referralCodeInput.value));
+    removeReferralBtn.addEventListener('click', clearReferralCode);
+    quickFillCodeBtn.addEventListener('click', () => {
+      referralCodeInput.value = 'COURSETA10';
+      applyReferralCode('COURSETA10');
+    });
+
+    // =========================================================================
+    // 9. REGISTRATION FORM VALIDATION & FIRESTORE SUBMISSION
+    // =========================================================================
+    function showFieldError(fieldId, inputEl, message) {
+      const errEl = document.getElementById(`err-${fieldId}`);
+      if (errEl) {
+        errEl.textContent = message;
+        errEl.classList.remove('hidden');
+      }
+      inputEl.classList.add('border-rose-400', 'focus:border-rose-500', 'focus:ring-rose-500/15');
+      inputEl.classList.remove('border-slate-300', 'focus:border-indigo-500', 'focus:ring-indigo-500/15');
+    }
+
+    function clearFieldError(fieldId, inputEl) {
+      const errEl = document.getElementById(`err-${fieldId}`);
+      if (errEl) {
+        errEl.textContent = '';
+        errEl.classList.add('hidden');
+      }
+      inputEl.classList.remove('border-rose-400', 'focus:border-rose-500', 'focus:ring-rose-500/15');
+      inputEl.classList.add('border-slate-300', 'focus:border-indigo-500', 'focus:ring-indigo-500/15');
+    }
+
+    function setRegistrationLoading(isLoading) {
+      registerNowBtn.disabled = isLoading;
+      regSpinner.classList.toggle('hidden', !isLoading);
+      regBtnIcon.classList.toggle('hidden', isLoading);
+      regBtnText.textContent = isLoading ? 'Registering...' : 'Register Now';
+    }
+
+    mobNoInput.addEventListener('input', () => {
+      mobNoInput.value = mobNoInput.value.replace(/\D/g, '').slice(0, 10);
+      clearFieldError('mobNo', mobNoInput);
+    });
+
+    courseSelect.addEventListener('change', () => {
+      clearFieldError('courseName', courseSelect);
+      updatePriceSummary();
+      if (appliedReferralCode) applyReferralCode(appliedReferralCode);
+    });
+
+    [
+      ['userName', userNameInput],
+      ['emailId', emailIdInput],
+      ['age', ageInput]
+    ].forEach(([id, el]) => {
+      el.addEventListener('input', () => clearFieldError(id, el));
+      el.addEventListener('change', () => clearFieldError(id, el));
+    });
+
+    registrationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      regErrorBanner.classList.add('hidden');
+
+      // Auto-apply valid referral code if typed without clicking Apply
+      const typedRef = referralCodeInput.value.trim().toUpperCase();
+      if (typedRef && typedRef !== appliedReferralCode && /^[A-Z0-9_-]{4,20}$/.test(typedRef)) {
+        appliedReferralCode = typedRef;
+      }
+
+      const courseName = courseSelect.value.trim();
+      const userName = userNameInput.value.trim();
+      const mobNo = mobNoInput.value.trim();
+      const emailId = emailIdInput.value.trim();
+      const ageVal = ageInput.value.trim();
+      const ageNum = Number(ageVal);
+
+      let isValid = true;
+
+      if (!courseName) {
+        showFieldError('courseName', courseSelect, 'Please select a course to enroll in.');
+        isValid = false;
+      } else {
+        clearFieldError('courseName', courseSelect);
+      }
+
+      if (userName.length < 2) {
+        showFieldError('userName', userNameInput, 'Please enter your full name (at least 2 characters).');
+        isValid = false;
+      } else {
+        clearFieldError('userName', userNameInput);
+      }
+
+      if (!/^\d{10}$/.test(mobNo)) {
+        showFieldError('mobNo', mobNoInput, 'Please enter a valid 10-digit mobile number.');
+        isValid = false;
+      } else {
+        clearFieldError('mobNo', mobNoInput);
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailId)) {
+        showFieldError('emailId', emailIdInput, 'Please enter a valid email address.');
+        isValid = false;
+      } else {
+        clearFieldError('emailId', emailIdInput);
+      }
+
+      if (!ageVal || Number.isNaN(ageNum) || !Number.isInteger(ageNum) || ageNum < 12 || ageNum > 99) {
+        showFieldError('age', ageInput, 'Please enter a valid age between 12 and 99.');
+        isValid = false;
+      } else {
+        clearFieldError('age', ageInput);
+      }
+
+      if (!isValid) {
+        regErrorText.textContent = 'Please fix the highlighted fields before clicking Register Now.';
+        regErrorBanner.classList.remove('hidden');
+        return;
+      }
+
+      if (!isFirebaseReady || !currentUser) {
+        regErrorText.textContent = 'Database is not connected yet. Please wait a moment or check your Firebase config.';
+        regErrorBanner.classList.remove('hidden');
+        return;
+      }
+
+      const { basePrice, discount, finalPrice } = calculatePricing();
+      const now = new Date();
+      const regPayload = {
+        registrationId: 'CRS-' + Date.now().toString().slice(-6),
+        courseName,
+        userName,
+        mobNo,
+        emailId,
+        age: ageNum,
+        referralCode: appliedReferralCode || '',
+        basePrice,
+        discount,
+        finalPrice,
+        createdAtMs: now.getTime(),
+        registeredAt: now.toLocaleDateString('en-IN', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        })
+      };
+
+      try {
+        setRegistrationLoading(true);
+        await addDoc(getRegistrationsColRef(), regPayload);
+        openSuccessModal(regPayload);
+        registrationForm.reset();
+        clearReferralCode();
+      } catch (err) {
+        console.error('Failed to save registration:', err);
+        regErrorText.textContent = 'Could not save your registration. Please check your connection and try again.';
+        regErrorBanner.classList.remove('hidden');
+      } finally {
+        setRegistrationLoading(false);
+      }
+    });
+
+    // =========================================================================
+    // 10. PUBLIC LIVE ENROLLMENTS PANEL (PRIVACY-SAFE SUMMARY)
+    // =========================================================================
+    function renderPublicRegistrations() {
+      regCountBadge.textContent = String(liveRegistrations.length);
+
+      if (liveRegistrations.length === 0) {
+        recentRegistrationsList.innerHTML = `
+          <div class="text-center py-10 px-4 rounded-2xl bg-slate-50 border border-dashed border-slate-200">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-500 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <p class="text-sm font-semibold text-slate-700">No registrations yet</p>
+            <p class="text-xs text-slate-500 mt-1">Be the first to enroll! New registrations appear here live.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Show latest 8 enrollments with contact info protected (full details are in Admin Dashboard)
+      recentRegistrationsList.innerHTML = liveRegistrations
+        .slice(0, 8)
+        .map(
+          (reg) => `
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-indigo-200 transition-colors">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-10 h-10 rounded-xl ${getAvatarColor(reg.userName || 'S')} font-bold text-xs flex items-center justify-center shrink-0">
+                ${escapeHTML(getInitials(reg.userName || 'Student'))}
+              </div>
+              <div class="min-w-0">
+                <h4 class="text-sm font-bold text-slate-900 truncate">${escapeHTML(reg.userName)}</h4>
+                <p class="text-xs font-semibold text-indigo-600 truncate">${escapeHTML(reg.courseName)}</p>
+              </div>
+            </div>
+            <div class="text-right shrink-0">
+              <p class="text-sm font-extrabold text-slate-900">${formatINR(reg.finalPrice)}</p>
+              <p class="text-[11px] font-medium text-slate-400">${escapeHTML(reg.registeredAt)}</p>
+            </div>
+          </div>
+          ${
+            reg.referralCode
+              ? `<div class="mt-2.5 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
+                  <span class="px-2 py-0.5 rounded-md font-bold bg-emerald-100 text-emerald-700">Referral Applied</span>
+                  <span class="text-slate-400 font-medium">ID: ${escapeHTML(reg.registrationId || '')}</span>
+                </div>`
+              : `<div class="mt-2.5 pt-2 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
+                  <span class="text-emerald-600 font-semibold">Confirmed Seat</span>
+                  <span class="text-slate-400 font-medium">ID: ${escapeHTML(reg.registrationId || '')}</span>
+                </div>`
+          }
+        </div>
+      `
+        )
+        .join('');
+    }
+
+    // =========================================================================
+    // 11. REGISTRATION SUCCESS MODAL
+    // =========================================================================
+    function openSuccessModal(reg) {
+      modalDetails.innerHTML = `
+        <div class="flex justify-between gap-3">
+          <span class="text-slate-500">Registration ID</span>
+          <span class="font-bold text-indigo-600">${escapeHTML(reg.registrationId)}</span>
+        </div>
+        <div class="flex justify-between gap-3">
+          <span class="text-slate-500">Course Name</span>
+          <span class="font-semibold text-slate-900 text-right">${escapeHTML(reg.courseName)}</span>
+        </div>
+        <div class="flex justify-between gap-3">
+          <span class="text-slate-500">User Name</span>
+          <span class="font-semibold text-slate-900 text-right">${escapeHTML(reg.userName)}</span>
+        </div>
+        <div class="flex justify-between gap-3">
+          <span class="text-slate-500">Mobile No</span>
+          <span class="font-semibold text-slate-900">${escapeHTML(reg.mobNo)}</span>
+        </div>
+        <div class="flex justify-between gap-3">
+          <span class="text-slate-500">Email ID</span>
+          <span class="font-semibold text-slate-900 truncate max-w-[200px]">${escapeHTML(reg.emailId)}</span>
+        </div>
+        <div class="flex justify-between gap-3">
+          <span class="text-slate-500">Age</span>
+          <span class="font-semibold text-slate-900">${escapeHTML(reg.age)}</span>
+        </div>
+        <div class="flex justify-between gap-3 pt-2 border-t border-slate-200/80">
+          <span class="text-slate-500">Referral Code</span>
+          <span class="font-semibold ${reg.referralCode ? 'text-emerald-600' : 'text-slate-400'}">
+            ${reg.referralCode ? `${escapeHTML(reg.referralCode)} (-${formatINR(reg.discount)})` : 'None'}
+          </span>
+        </div>
+        <div class="flex justify-between gap-3">
+          <span class="font-bold text-slate-800">Final Payable Amount</span>
+          <span class="font-extrabold text-indigo-600 text-base">${formatINR(reg.finalPrice)}</span>
+        </div>
+      `;
+      successModal.classList.remove('hidden');
+      closeModalBtn.focus();
+    }
+
+    function closeSuccessModal() {
+      successModal.classList.add('hidden');
+    }
+
+    closeModalBtn.addEventListener('click', closeSuccessModal);
+    successModal.addEventListener('click', (e) => {
+      if (e.target === successModal) closeSuccessModal();
+    });
+
+    // =========================================================================
+    // 12. REAL-TIME USER COMMENTS & INTERACTIVE STAR RATING
+    // =========================================================================
+    const RATING_LABELS = {
+      1: '1 / 5 (Poor)',
+      2: '2 / 5 (Fair)',
+      3: '3 / 5 (Good)',
+      4: '4 / 5 (Very Good)',
+      5: '5 / 5 (Excellent)'
+    };
+
+    function updateStarPickerUI(rating) {
+      selectedStarRating = rating;
+      commentRatingInput.value = String(rating);
+      starRatingLabel.textContent = RATING_LABELS[rating] || `${rating} / 5`;
+
+      starRatingPicker.querySelectorAll('.star-btn').forEach((btn) => {
+        const starVal = Number(btn.dataset.star);
+        btn.classList.toggle('text-amber-400', starVal <= rating);
+        btn.classList.toggle('text-slate-300', starVal > rating);
+      });
+    }
+
+    starRatingPicker.addEventListener('click', (e) => {
+      const btn = e.target.closest('.star-btn');
+      if (!btn) return;
+      updateStarPickerUI(Number(btn.dataset.star));
+    });
+
+    function renderComments() {
+      const combined = [...liveComments, ...FEATURED_REVIEWS];
+      commentCount.textContent = String(combined.length);
+
+      commentsList.innerHTML = combined
+        .map((c) => {
+          const initials = getInitials(c.author);
+          const avatarClass = getAvatarColor(c.author);
+          return `
+          <article class="bg-slate-50/80 rounded-2xl border border-slate-200/80 p-5 sm:p-6 transition-all hover:bg-white hover:shadow-sm">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-2xl ${avatarClass} font-bold text-sm flex items-center justify-center shrink-0">
+                ${escapeHTML(initials)}
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <h4 class="text-base font-bold text-slate-900">${escapeHTML(c.author)}</h4>
+                    <div class="flex flex-wrap items-center gap-2 mt-0.5">
+                      <span class="inline-block text-xs font-semibold text-indigo-600">${escapeHTML(c.course)}</span>
+                      <span class="text-sm tracking-tight" aria-label="Rating: ${escapeHTML(c.rating || 5)} out of 5">${renderStars(c.rating || 5)}</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-medium text-slate-400">${escapeHTML(c.dateStr || 'Just now')}</span>
+                </div>
+                <p class="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+                  "${escapeHTML(c.text)}"
+                </p>
+              </div>
+            </div>
+          </article>
+        `;
+        })
+        .join('');
+    }
+
+    function setCommentLoading(isLoading) {
+      postCommentBtn.disabled = isLoading;
+      commentSpinner.classList.toggle('hidden', !isLoading);
+      postCommentIcon.classList.toggle('hidden', isLoading);
+      postCommentText.textContent = isLoading ? 'Posting...' : 'Post Review';
+    }
+
+    commentAuthorInput.addEventListener('input', () => clearFieldError('commentAuthor', commentAuthorInput));
+    commentTextInput.addEventListener('input', () => clearFieldError('commentText', commentTextInput));
+
+    commentForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      commentSuccessBanner.classList.add('hidden');
+      commentErrorBanner.classList.add('hidden');
+
+      const author = commentAuthorInput.value.trim();
+      const course = commentCourseSelect.value.trim() || 'General Learner';
+      const rating = Number(commentRatingInput.value) || 5;
+      const text = commentTextInput.value.trim();
+
+      let valid = true;
+      if (author.length < 2) {
+        showFieldError('commentAuthor', commentAuthorInput, 'Please enter your name.');
+        valid = false;
+      } else {
+        clearFieldError('commentAuthor', commentAuthorInput);
+      }
+
+      if (text.length < 5) {
+        showFieldError('commentText', commentTextInput, 'Please write a review (at least 5 characters).');
+        valid = false;
+      } else {
+        clearFieldError('commentText', commentTextInput);
+      }
+
+      if (!valid) return;
+
+      if (!isFirebaseReady || !currentUser) {
+        commentErrorBanner.textContent = 'Unable to post right now. Database is not connected.';
+        commentErrorBanner.classList.remove('hidden');
+        return;
+      }
+
+      const now = new Date();
+      try {
+        setCommentLoading(true);
+        await addDoc(getCommentsColRef(), {
+          author,
+          course,
+          rating,
+          text,
+          createdAtMs: now.getTime(),
+          dateStr: now.toLocaleDateString('en-IN', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+          })
+        });
+
+        commentForm.reset();
+        updateStarPickerUI(5);
+        commentSuccessBanner.classList.remove('hidden');
+        setTimeout(() => commentSuccessBanner.classList.add('hidden'), 4000);
+      } catch (err) {
+        console.error('Failed to post comment:', err);
+        commentErrorBanner.textContent = 'Could not publish your review. Please try again.';
+        commentErrorBanner.classList.remove('hidden');
+      } finally {
+        setCommentLoading(false);
+      }
+    });
+
+    // =========================================================================
+    // 13. ADMIN REGISTRATIONS DASHBOARD & CSV EXPORT
+    // =========================================================================
+    function openAdminModal() {
+      adminModal.classList.remove('hidden');
+      if (isAdminUnlocked) {
+        showUnlockedAdminView();
+      } else {
+        adminLoginView.classList.remove('hidden');
+        adminDashboardView.classList.add('hidden');
+        lockAdminBtn.classList.add('hidden');
+        adminPasscodeError.classList.add('hidden');
+        adminPasscodeInput.value = '';
+        setTimeout(() => adminPasscodeInput.focus(), 50);
+      }
+    }
+
+    function closeAdminModal() {
+      adminModal.classList.add('hidden');
+    }
+
+    function showUnlockedAdminView() {
+      adminLoginView.classList.add('hidden');
+      adminDashboardView.classList.remove('hidden');
+      lockAdminBtn.classList.remove('hidden');
+      renderAdminDashboard();
+    }
+
+    document.querySelectorAll('.open-admin-btn').forEach((btn) => {
+      btn.addEventListener('click', openAdminModal);
+    });
+
+    closeAdminModalBtn.addEventListener('click', closeAdminModal);
+    adminModal.addEventListener('click', (e) => {
+      if (e.target === adminModal) closeAdminModal();
+    });
+
+    lockAdminBtn.addEventListener('click', () => {
+      isAdminUnlocked = false;
+      openAdminModal();
+    });
+
+    adminPasscodeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (adminPasscodeInput.value.trim() === ADMIN_PASSCODE) {
+        isAdminUnlocked = true;
+        adminPasscodeError.classList.add('hidden');
+        showUnlockedAdminView();
+      } else {
+        adminPasscodeError.classList.remove('hidden');
+        adminPasscodeInput.select();
+      }
+    });
+
+    function getFilteredAdminRegistrations() {
+      const q = adminSearchInput.value.trim().toLowerCase();
+      if (!q) return liveRegistrations;
+      return liveRegistrations.filter((r) =>
+        [r.userName, r.courseName, r.mobNo, r.emailId, r.referralCode, r.registrationId, r.registeredAt]
+          .filter(Boolean)
+          .some((val) => String(val).toLowerCase().includes(q))
+      );
+    }
+
+    function renderAdminDashboard() {
+      const totalRegs = liveRegistrations.length;
+      const totalRevenue = liveRegistrations.reduce((sum, r) => sum + Number(r.finalPrice || 0), 0);
+      const totalReferrals = liveRegistrations.filter((r) => Boolean(r.referralCode)).length;
+
+      adminTotalRegs.textContent = String(totalRegs);
+      adminTotalRevenue.textContent = formatINR(totalRevenue);
+      adminTotalReferrals.textContent = String(totalReferrals);
+
+      const rows = getFilteredAdminRegistrations();
+      if (rows.length === 0) {
+        adminTableBody.innerHTML = `
+          <tr>
+            <td colspan="9" class="px-4 py-10 text-center text-sm text-slate-500">
+              ${liveRegistrations.length === 0 ? 'No student registrations in Firestore yet.' : 'No registrations match your search query.'}
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      adminTableBody.innerHTML = rows
+        .map(
+          (r) => `
+        <tr class="hover:bg-slate-50/80 transition-colors">
+          <td class="px-4 py-3.5 whitespace-nowrap text-xs text-slate-500">${escapeHTML(r.registeredAt || '-')}</td>
+          <td class="px-4 py-3.5 whitespace-nowrap font-semibold text-slate-900">
+            ${escapeHTML(r.userName)}
+            <div class="text-[11px] font-normal text-slate-400">${escapeHTML(r.registrationId || '')}</div>
+          </td>
+          <td class="px-4 py-3.5 whitespace-nowrap">
+            <span class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-700">
+              ${escapeHTML(r.courseName)}
+            </span>
+          </td>
+          <td class="px-4 py-3.5 whitespace-nowrap font-mono text-xs text-slate-700">${escapeHTML(r.mobNo)}</td>
+          <td class="px-4 py-3.5 whitespace-nowrap text-xs text-slate-700">${escapeHTML(r.emailId)}</td>
+          <td class="px-4 py-3.5 whitespace-nowrap text-xs text-slate-700">${escapeHTML(r.age)}</td>
+          <td class="px-4 py-3.5 whitespace-nowrap text-xs">
+            ${
+              r.referralCode
+                ? `<span class="px-2 py-0.5 rounded-md font-bold bg-emerald-100 text-emerald-700">${escapeHTML(r.referralCode)}</span>`
+                : '<span class="text-slate-400">—</span>'
+            }
+          </td>
+          <td class="px-4 py-3.5 whitespace-nowrap text-right font-bold text-slate-900">${formatINR(r.finalPrice)}</td>
+          <td class="px-4 py-3.5 whitespace-nowrap text-center">
+            <button
+              type="button"
+              data-doc-id="${escapeHTML(r.docId)}"
+              class="delete-reg-btn p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+              title="Delete Registration"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          </td>
+        </tr>
+      `
+        )
+        .join('');
+    }
+
+    adminSearchInput.addEventListener('input', renderAdminDashboard);
+
+    // Delete individual registration from Firestore
+    adminTableBody.addEventListener('click', async (e) => {
+      const delBtn = e.target.closest('.delete-reg-btn');
+      if (!delBtn || !isFirebaseReady || !currentUser) return;
+      const docId = delBtn.dataset.docId;
+      if (!docId) return;
+      try {
+        delBtn.disabled = true;
+        await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'registrations', docId));
+      } catch (err) {
+        console.error('Failed to delete registration:', err);
+        delBtn.disabled = false;
+      }
+    });
+
+    // Download CSV of all registrations
+    function escapeCsvCell(val) {
+      const str = String(val ?? '');
+      if (/[",\n]/.test(str)) {
+        return `"${str.replace(/"/g, '""')}"`;
+      }
+      return str;
+    }
+
+    downloadCsvBtn.addEventListener('click', () => {
+      const rows = getFilteredAdminRegistrations();
+      const headers = [
+        'Registration ID',
+        'Date',
+        'User Name',
+        'Course Name',
+        'Mobile No',
+        'Email ID',
+        'Age',
+        'Referral Code',
+        'Base Price (INR)',
+        'Discount (INR)',
+        'Final Price (INR)'
+      ];
+
+      const csvLines = [
+        headers.map(escapeCsvCell).join(','),
+        ...rows.map((r) =>
+          [
+            r.registrationId || '',
+            r.registeredAt || '',
+            r.userName || '',
+            r.courseName || '',
+            r.mobNo || '',
+            r.emailId || '',
+            r.age || '',
+            r.referralCode || '',
+            r.basePrice ?? '',
+            r.discount ?? 0,
+            r.finalPrice ?? ''
+          ]
+            .map(escapeCsvCell)
+            .join(',')
+        )
+      ];
+
+      const blob = new Blob([csvLines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `courseta-registrations-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    // Global Escape key handler for modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (!successModal.classList.contains('hidden')) closeSuccessModal();
+        if (!adminModal.classList.contains('hidden')) closeAdminModal();
+      }
+    });
+
+    // =========================================================================
+    // 14. INITIALIZE UI & FIREBASE BACKEND
+    // =========================================================================
+    populateCourseSelects();
+    renderCourses(activeCategory);
+    updatePriceSummary();
+    updateStarPickerUI(5);
+    renderPublicRegistrations();
+    renderComments();
+    initFirebaseBackend();
+  </script>
+</body>
+</html>
